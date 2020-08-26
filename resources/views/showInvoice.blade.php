@@ -238,11 +238,11 @@
 								@foreach($products as $product)
 									@if ($invoiceEntry->productId == $product->productId)
 									<td class="text-left"><h3>{{$product->productName}}</h3>{{$product->productDescription}}</td>
-									<td class="unit">{{$product->productPrice}}</td>
+									<td class="unit">${{$invoiceEntry->invoiceEntryPrice}}</td>
 									<td class="qty">{{$invoiceEntry->productQuantity}}</td>
-									<td class="total">${{$product->productPrice * $invoiceEntry->productQuantity}}.00</td>
+									<td class="total">${{$invoiceEntry->invoiceEntryPrice * $invoiceEntry->productQuantity}}.00</td>
 									@php
-										$total = $total + $product->productPrice * $invoiceEntry->productQuantity;
+										$total = $total + $invoiceEntry->invoiceEntryPrice * $invoiceEntry->productQuantity;
 									@endphp
 									@endif
 								@endforeach

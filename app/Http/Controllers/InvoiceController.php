@@ -72,13 +72,15 @@ class InvoiceController extends Controller
         $invoice->save();
         // dd($invoice);
         $x = 1;
-        while($x <= $input['numEntries']) {
+        while($x <= $input['newEntries']) {
             $invoiceEntry = new InvoiceEntry();
             $str = "pId" . $x;
             $invoiceEntry->productId = $input[$str];
+            $product = Product::where('productId', $invoiceEntry->productId)->firstOrFail();
             $str = "pQty" . $x;
             $invoiceEntry->productQuantity = $input[$str];
             $invoiceEntry->invoice_id = $invoice->id;
+            $invoiceEntry->invoiceEntryPrice = $product->productPrice;
             $invoiceEntry->save();
             $x++;
         }
