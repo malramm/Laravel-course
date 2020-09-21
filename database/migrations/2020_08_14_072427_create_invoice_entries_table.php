@@ -14,10 +14,12 @@ class CreateInvoiceEntriesTable extends Migration
     public function up()
     {
         Schema::create('invoice_entries', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('productId');
+            $table->decimal('invoiceEntryPrice', 8, 2);
             $table->integer('productQuantity');
             $table->foreignId('invoice_id')->constrained('invoices');
+            // $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->timestamps();
         });
     }

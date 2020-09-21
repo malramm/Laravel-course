@@ -16,7 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->date('invoiceDate');
-            $table->date('dueDate')->storedAs('invoiceDate + 14');
+            $table->date('dueDate');
             $table->string('customerName', 100);
             $table->string('customerAddress', 100)->default('enter an address');
             $table->string('customerEmail', 100);
